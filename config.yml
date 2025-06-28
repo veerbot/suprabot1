@@ -123,7 +123,7 @@ offer_draw:
   enabled: true                          # Activate whether the bot should offer draw.
   score: 10                               # If the absolute value of the score is less than or equal to this value, the bot offers/accepts draw (in cp)
   consecutive_moves: 10                 # How many moves in a row the absolute value of the score has to be below the draw value
-  min_game_length: 40                  # Earliest move in which draw is offered.
+  min_game_length: 54                 # Earliest move in which draw is offered.
   against_humans: false                    # Activate whether these settings should apply against humans.
 
 resign:
