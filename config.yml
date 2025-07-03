@@ -62,10 +62,11 @@ opening_books:
   enabled: true
   priority: 999
   books:
-    standard:
-      selection: weighted_random
-      max_depth: 80
+    standard_white:
+      selection: best_move 
+     # max_depth: 80
       names:
+        - nikibook.bin
         - Perfect2023
         - optimus4
         - optimus2502
