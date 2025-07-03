@@ -78,8 +78,8 @@ opening_books:
       #max depth : 69 
       names:
         - Perfect2023
-        - optimus4
         - optimus2502
+        - optimus4
         - Titans
     humans: 
       selection: best_move 
