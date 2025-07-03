@@ -84,6 +84,7 @@ opening_books:
     humans: 
       selection: best_move 
       names: 
+        - gm
         - noob
     
 
@@ -207,4 +208,5 @@ books:
   Opimus3.1: "./engines/optimus32.bin"
   noob: "./engines/Titans.bin"
   ai: "./engines/nikibook.bin"
+  gm: "./engines/gm2001(1).bin"
 
