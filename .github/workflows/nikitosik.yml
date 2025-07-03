@@ -16,21 +16,14 @@ jobs:
         with:
           persist-credentials: true
 
-      - name: Install build tools
+      - name: Download Polyglot binary
         run: |
-          sudo apt update
-          sudo apt install -y make g++ git
-
-      - name: Clone and build Polyglot
-        run: |
-          git clone https://github.com/gbtami/polyglot
-          cd polyglot
-          make
-          cp polyglot ../polyglot-bin
+          wget -O polyglot https://github.com/gbtami/polyglot/releases/download/v2.0.3/polyglot-linux
+          chmod +x polyglot
 
       - name: Build nikibook.bin from PGN
         run: |
-          ./polyglot-bin \
+          ./polyglot \
             make-book \
             -pgn engines/my_opening_book.pgn \
             -bin engines/nikibook.bin \
@@ -44,3 +37,4 @@ jobs:
           git add engines/nikibook.bin
           git commit -m "Auto-build: updated nikibook.bin from PGN"
           git push
+
