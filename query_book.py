@@ -2,7 +2,7 @@ import chess
 import chess.polyglot
 
 # === Config ===
-BOOK_PATH = "engines/sfbook.bin"
+BOOK_PATH = "engines/gm2001(1).bin"
 SAN_MOVES = "e4 e5 Nf3 Nc6 Bb5"
 
 # === Convert SAN to FEN ===
