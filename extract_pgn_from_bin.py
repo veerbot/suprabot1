@@ -7,7 +7,7 @@ from collections import defaultdict
 
 book_path = "engines/OPTIMUS2502.bin"
 output_pgn = "engines/OPTIMUS2502.pgn"
-MAX_DEPTH = 20  # Max moves per line
+MAX_DEPTH = 200  # Max moves per line
 
 seen_fens = set()
 games_written = 0
