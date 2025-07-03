@@ -1,0 +1,46 @@
+name: Build NikiBook
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'engines/my_opening_book.pgn'
+
+jobs:
+  build-nikibook:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          persist-credentials: true
+
+      - name: Install build tools
+        run: |
+          sudo apt update
+          sudo apt install -y make g++ git
+
+      - name: Clone and build Polyglot
+        run: |
+          git clone https://github.com/gbtami/polyglot
+          cd polyglot
+          make
+          cp polyglot ../polyglot-bin
+
+      - name: Build nikibook.bin from PGN
+        run: |
+          ./polyglot-bin \
+            make-book \
+            -pgn engines/my_opening_book.pgn \
+            -bin engines/nikibook.bin \
+            -depth 200 \
+            -quiet
+
+      - name: Commit and push nikibook.bin
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add engines/nikibook.bin
+          git commit -m "Auto-build: updated nikibook.bin from PGN"
+          git push
