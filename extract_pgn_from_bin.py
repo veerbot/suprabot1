@@ -3,35 +3,72 @@
 import chess
 import chess.pgn
 from chess.polyglot import open_reader
+from collections import defaultdict
 
 book_path = "engines/OPTIMUS2502.bin"
 output_pgn = "engines/OPTIMUS2502.pgn"
+MAX_DEPTH = 20  # Max moves per line
 
-seen_positions = set()
+seen_fens = set()
 games_written = 0
 
-with open(output_pgn, "w", encoding="utf-8") as pgn_file:
+def extract_book_lines(book_path):
+    moves_from_fen = defaultdict(list)
+
     with open_reader(book_path) as reader:
         for entry in reader:
+            board = chess.Board(entry.key)
+            fen = board.board_fen()
+            moves_from_fen[fen].append(entry.move())
+    
+    return moves_from_fen
+
+def build_lines(book_path, max_depth=20):
+    lines = []
+
+    def dfs(board, moves_so_far, depth):
+        if depth >= max_depth:
+            return
+        with open_reader(book_path) as reader:
+            entries = [e for e in reader.find_all(board)]
+            for entry in entries:
+                move = entry.move()
+                board.push(move)
+                dfs(board, moves_so_far + [move], depth + 1)
+                board.pop()
+
+        if moves_so_far:
+            lines.append(moves_so_far[:])
+
+    board = chess.Board()
+    dfs(board, [], 0)
+    return lines
+
+def write_pgn(lines, output_file):
+    global games_written
+    with open(output_file, "w", encoding="utf-8") as f:
+        for line in lines:
             board = chess.Board()
-            # Play book moves up to this key
-            try:
-                board.push(entry.move())
-            except:
-                continue
+            game = chess.pgn.Game()
+            game.headers["Event"] = "Extracted from OPTIMUS2502.bin"
+            node = game
+
+            for move in line:
+                node = node.add_variation(move)
+                board.push(move)
 
             fen = board.fen()
-            if fen in seen_positions:
+            if fen in seen_fens:
                 continue
-            seen_positions.add(fen)
+            seen_fens.add(fen)
 
-            game = chess.pgn.Game()
-            game.headers["Event"] = "Book Line from OPTIMUS2502.bin"
-            game.setup(board)
-            node = game.add_main_variation(entry.move())
-
-            print(game, file=pgn_file, end="\n\n")
+            print(game, file=f, end="\n\n")
             games_written += 1
 
-print(f"✅ Extracted {games_written} PGN lines to {output_pgn}")
+# === RUN IT ===
+print("⏳ Extracting book lines...")
+lines = build_lines(book_path, MAX_DEPTH)
+write_pgn(lines, output_pgn)
+print(f"✅ Extracted {games_written} PGN games to {output_pgn}")
+
 
