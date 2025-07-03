@@ -1,5 +1,5 @@
 # extract_pgn_from_bin.py
-
+from six.moves import copyreg
 from polyglot import open_reader
 import chess.pgn
 import chess
