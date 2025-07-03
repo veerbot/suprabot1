@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     paths:
-      - 'engines/my_opening_book.pgn'
+      - 'niki.pgn'
 
 jobs:
   build-book:
@@ -23,7 +23,7 @@ jobs:
         run: |
           mkdir -p engines
           polyglot make-book \
-            -pgn engines/my_opening_book.pgn \
+            -pgn niki.pgn \
             -bin engines/nikibook.bin \
             -max-ply 200 \
             -min-game 1
@@ -33,6 +33,7 @@ jobs:
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
           git add engines/nikibook.bin
-          git commit -m "Auto-build: nikibook.bin created from my_opening_book.pgn"
+          git commit -m "Auto-build: nikibook.bin created from niki.pgn"
           git push
+
 
