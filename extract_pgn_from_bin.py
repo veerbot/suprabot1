@@ -12,17 +12,6 @@ MAX_DEPTH = 200  # Max moves per line
 seen_fens = set()
 games_written = 0
 
-def extract_book_lines(book_path):
-    moves_from_fen = defaultdict(list)
-
-    with open_reader(book_path) as reader:
-        for entry in reader:
-            board = chess.Board(entry.key)
-            fen = board.board_fen()
-            moves_from_fen[fen].append(entry.move())
-    
-    return moves_from_fen
-
 def build_lines(book_path, max_depth=20):
     lines = []
 
@@ -30,15 +19,16 @@ def build_lines(book_path, max_depth=20):
         if depth >= max_depth:
             return
         with open_reader(book_path) as reader:
-            entries = [e for e in reader.find_all(board)]
-            for entry in entries:
-                move = entry.move()
-                board.push(move)
-                dfs(board, moves_so_far + [move], depth + 1)
-                board.pop()
-
-        if moves_so_far:
-            lines.append(moves_so_far[:])
+            entries = list(reader.find_all(board))
+        if not entries:
+            if moves_so_far:
+                lines.append(moves_so_far[:])
+            return
+        for entry in entries:
+            move = entry.move  # ✅ FIXED HERE: no parentheses
+            board.push(move)
+            dfs(board, moves_so_far + [move], depth + 1)
+            board.pop()
 
     board = chess.Board()
     dfs(board, [], 0)
@@ -65,10 +55,11 @@ def write_pgn(lines, output_file):
             print(game, file=f, end="\n\n")
             games_written += 1
 
-# === RUN IT ===
+# === RUN ===
 print("⏳ Extracting book lines...")
 lines = build_lines(book_path, MAX_DEPTH)
 write_pgn(lines, output_pgn)
 print(f"✅ Extracted {games_written} PGN games to {output_pgn}")
+
 
 
