@@ -7,34 +7,32 @@ on:
       - 'engines/my_opening_book.pgn'
 
 jobs:
-  build-nikibook:
+  build-book:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-        with:
-          persist-credentials: true
 
-      - name: Download Polyglot binary
+      - name: Install Polyglot
         run: |
-          wget -O polyglot https://github.com/gbtami/polyglot/releases/download/v2.0.3/polyglot-linux
-          chmod +x polyglot
+          sudo apt update
+          sudo apt install -y polyglot
 
-      - name: Build nikibook.bin from PGN
+      - name: Generate nikibook.bin
         run: |
-          ./polyglot \
-            make-book \
+          mkdir -p engines
+          polyglot make-book \
             -pgn engines/my_opening_book.pgn \
             -bin engines/nikibook.bin \
-            -depth 200 \
-            -quiet
+            -max-ply 200 \
+            -min-game 1
 
-      - name: Commit and push nikibook.bin
+      - name: Commit and Push nikibook.bin
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
           git add engines/nikibook.bin
-          git commit -m "Auto-build: updated nikibook.bin from PGN"
+          git commit -m "Auto-build: nikibook.bin created from my_opening_book.pgn"
           git push
 
