@@ -18,7 +18,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install python-chess polyglot
+          pip install python-chess polyglot six 
 
       - name: Extract PGN from .bin
         run: |
