@@ -1,33 +1,37 @@
 # extract_pgn_from_bin.py
-from six.moves import copyreg
-from chess.polyglot import open_reader
-import chess.pgn
+
 import chess
-import os
+import chess.pgn
+from chess.polyglot import open_reader
 
 book_path = "engines/OPTIMUS2502.bin"
 output_pgn = "engines/OPTIMUS2502.pgn"
 
-reader = open_reader(book_path)
 seen_positions = set()
 games_written = 0
 
 with open(output_pgn, "w", encoding="utf-8") as pgn_file:
-    for entry in reader:
-        board = entry.position()
-        fen = board.fen()
-        if fen in seen_positions:
-            continue
-        seen_positions.add(fen)
+    with open_reader(book_path) as reader:
+        for entry in reader:
+            board = chess.Board()
+            # Play book moves up to this key
+            try:
+                board.push(entry.move())
+            except:
+                continue
 
-        move = entry.move()
-        board.push(move)
-        game = chess.pgn.Game()
-        node = game
-        node.board().set_fen(entry.position().fen())
-        node = node.add_variation(move)
-        game.headers["Event"] = "Extracted from OPTIMUS2502.bin"
-        print(game, file=pgn_file, end="\n\n")
-        games_written += 1
+            fen = board.fen()
+            if fen in seen_positions:
+                continue
+            seen_positions.add(fen)
 
-print(f"Extracted {games_written} positions to {output_pgn}")
+            game = chess.pgn.Game()
+            game.headers["Event"] = "Book Line from OPTIMUS2502.bin"
+            game.setup(board)
+            node = game.add_main_variation(entry.move())
+
+            print(game, file=pgn_file, end="\n\n")
+            games_written += 1
+
+print(f"✅ Extracted {games_written} PGN lines to {output_pgn}")
+
