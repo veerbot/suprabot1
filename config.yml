@@ -203,7 +203,7 @@ whitelist:
   - Shresthmah
 
 books:
-  Titans: "./engines/OPTIMUS2409.bin"
+  Titans: "./engines/optimus2409.bin"
   optimus2502: "./engines/OPTIMUS2502.bin"
   optimus4: "./engines/book1001.bin"
   Perfect2023: "./engines/sfbook.bin"
