@@ -80,7 +80,7 @@ opening_books:
        # - Perfect2023
         - optimus2502
        # - optimus4
-        - Perfect2023
+       # - optimus4
     humans: 
       selection: best_move 
       names: 
