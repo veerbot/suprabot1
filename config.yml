@@ -79,6 +79,7 @@ opening_books:
       names:
        # - Perfect2023
         - optimus2502
+        - Titans
        # - optimus4
        # - optimus4
     humans: 
@@ -202,7 +203,7 @@ whitelist:
   - Shresthmah
 
 books:
-  Titans: "./engines/book1.bin"
+  Titans: "./engines/OPTIMUS2409.bin"
   optimus2502: "./engines/OPTIMUS2502.bin"
   optimus4: "./engines/book1001.bin"
   Perfect2023: "./engines/sfbook.bin"
