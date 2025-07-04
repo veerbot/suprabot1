@@ -74,13 +74,13 @@ opening_books:
         - Opimus3.1
         - noob
     standard_black:
-      selection: weighted_random 
-      #max depth : 69 
+      selection: uniform_random 
+      max depth : 45 
       names:
-        - Perfect2023
+       # - Perfect2023
         - optimus2502
-        - optimus4
-        - Titans
+       # - optimus4
+        - Perfect2023
     humans: 
       selection: best_move 
       names: 
@@ -103,7 +103,7 @@ online_moves:
     # max_depth: 20
 
   lichess_cloud:
-    enabled: true
+    enabled: false
     priority: 200
     only_without_book: false
     min_eval_depth: 20
