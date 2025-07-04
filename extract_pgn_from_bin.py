@@ -3,11 +3,11 @@
 import chess
 import chess.pgn
 from chess.polyglot import open_reader
-from collections import defaultdict
 
 book_path = "engines/OPTIMUS2502.bin"
 output_pgn = "engines/OPTIMUS2502.pgn"
 MAX_DEPTH = 200  # Max moves per line
+LOG_INTERVAL = 100  # Print progress every 100 games
 
 seen_fens = set()
 games_written = 0
@@ -25,7 +25,7 @@ def build_lines(book_path, max_depth=20):
                 lines.append(moves_so_far[:])
             return
         for entry in entries:
-            move = entry.move  # ✅ FIXED HERE: no parentheses
+            move = entry.move
             board.push(move)
             dfs(board, moves_so_far + [move], depth + 1)
             board.pop()
@@ -37,7 +37,7 @@ def build_lines(book_path, max_depth=20):
 def write_pgn(lines, output_file):
     global games_written
     with open(output_file, "w", encoding="utf-8") as f:
-        for line in lines:
+        for idx, line in enumerate(lines):
             board = chess.Board()
             game = chess.pgn.Game()
             game.headers["Event"] = "Extracted from OPTIMUS2502.bin"
@@ -55,11 +55,14 @@ def write_pgn(lines, output_file):
             print(game, file=f, end="\n\n")
             games_written += 1
 
+            if games_written % LOG_INTERVAL == 0:
+                print(f"📝 Saved {games_written} games so far...", flush=True)
+
 # === RUN ===
 print("⏳ Extracting book lines...")
 lines = build_lines(book_path, MAX_DEPTH)
+print(f"📚 Total lines extracted: {len(lines)}")
 write_pgn(lines, output_pgn)
-print(f"✅ Extracted {games_written} PGN games to {output_pgn}")
-
+print(f"✅ Finished: {games_written} PGN games written to {output_pgn}")
 
 
