@@ -2,8 +2,8 @@ import chess
 import chess.polyglot
 
 # === Config ===
-BOOK_PATH = "engines/gm2001(1).bin"
-SAN_MOVES = "e4 e5 Nf3 Nc6 Bb5"
+BOOK_PATH = "engines/perfect_book.bin"
+SAN_MOVES = "e4"
 
 # === Convert SAN to FEN ===
 board = chess.Board()
