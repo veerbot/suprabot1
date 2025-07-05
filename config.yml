@@ -9,8 +9,8 @@ engines:
     move_overhead_multiplier: 1.0
     uci_options:
       Threads: 4
-      Hash: 1024
-      Move Overhead: 250
+      Hash: 512
+      Move Overhead: 240
     limits:
       # time: 20.0
       # depth: 50
@@ -176,8 +176,6 @@ matchmaking:
       tc: 0.75+0
     bm3:
       tc: 1+0
-    gulugulu:
-      tc: 0+1
 
 messages:
   greeting: "Konnichiwa guzaimase! ❤️‍🔥Using help of {engine} Type !help to glimpse my arsenal. Best of luck"
