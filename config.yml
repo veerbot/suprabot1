@@ -287,11 +287,11 @@ challenge:
   human_time_controls:
     - rapid
   bot_modes:
-   # - casual
-   # - rated
+    - casual
+    - rated
   human_modes:
-  #  - casual
-   # - rated
+    - casual
+    - rated
 
 matchmaking:
   delay: 485
