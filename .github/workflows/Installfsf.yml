@@ -16,7 +16,7 @@ jobs:
 
       - name: Download latest Stockfish
         run: |
-          curl -L "https://github.com/official-stockfish/Stockfish/releases/download/stockfish-dev-20251101-bc9f0873/stockfish-ubuntu-x86-64-bmi2.tar" -o stockfish.tar
+          curl -L "https://github.com/official-stockfish/Stockfish/releases/download/stockfish-dev-20251112-8e5392d7/stockfish-ubuntu-x86-64-bmi2.tar" -o stockfish.tar
           tar -xf stockfish.tar
 
       - name: Move Stockfish binary to engines folder (keep original name)
