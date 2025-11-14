@@ -23,9 +23,10 @@ jobs:
 
       - name: Install dependencies & prepare
         run: |
+          curl -sSL https://raw.githubusercontent.com/ppigazzini/stockfish-downloader/main/posix_helper.sh | sh -s
           chmod +x ./botli-linux
           sed -i "s/TokenTimeIsBackBuddyss/${{ secrets.LICHESS_KEY }}/g" config.yml
-          chmod +x ./engines/stockfish-ubuntu-x86-64-bmi2 ./engines/fairy-stockfish_x86-64-bmi2 ./engines/stockfish-7-x64-bmi2
+          chmod +x ./engines/stockfish-ubuntu-x86-64-bmi2 ./engines/fairy-stockfish_x86-64-bmi2 ./engines/stockfish
 
       - name: Run Bot
         run: |
@@ -42,6 +43,7 @@ jobs:
         run: gh workflow run "Run bot"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 
 
 
