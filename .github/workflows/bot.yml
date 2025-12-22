@@ -33,7 +33,7 @@ jobs:
       - name: Run Bot
         run: |
           echo "Starting bot..."
-          ./botli-linux--upgrade "matchmaking" &
+          ./botli-linux --upgrade "matchmaking" &
           PID=$!
           # Auto-exit before GitHub 6h limit
           ( sleep 20700 && echo "Time up. Killing bot..." && kill -SIGTERM $PID ) &
@@ -45,6 +45,7 @@ jobs:
         run: gh workflow run "Run bot"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 
 
 
