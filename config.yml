@@ -303,9 +303,9 @@ matchmaking:
     bp:
       tc: 0.75+0
     bullet:
-      tc: 0+1
+      tc: 1+0
       variant: crazyhouse
-      rated: true
+    #  rated: true
     bulle2:
       tc: 3+0
     bc:
