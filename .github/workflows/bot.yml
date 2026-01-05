@@ -29,7 +29,7 @@ jobs:
           chmod +x ./botli-linux
           sed -i "s/TokenTimeIsBackBuddyss/${{ secrets.LICHESS_KEY }}/g" config.yml
           chmod +x ./engines/stockfish-ubuntu-x86-64-bmi2 ./engines/fairy-stockfish_x86-64-bmi2 ./engines/stockfish
-          chmod +x ./engines/tcheran-v10.0-linux-x86_64-v4
+          chmod +x ./engines/tcheran-v10.0-linux-x86_64-v3
 
       - name: Run Bot
         run: |
@@ -46,6 +46,7 @@ jobs:
         run: gh workflow run "Run bot"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 
 
 
