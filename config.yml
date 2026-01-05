@@ -3,7 +3,7 @@ token: "TokenTimeIsBackBuddyss"  # Lichess OAuth2 Token.
 engines:
   standard:
     dir: "./engines"
-    name: "stockfish"
+    name: "tcheran-v10.0-linux-x86_64-v4"
     ponder: true
     silence_stderr: false
     move_overhead_multiplier: 11.8
@@ -50,7 +50,7 @@ engines:
     #  nodes: 5000000
   standard_human:
     dir: "./engines"
-    name: "stockfish-ubuntu-x86-64-bmi2"
+    name: "tcheran-v10.0-linux-x86_64-v4"
     ponder: false
     silence_stderr: false
     move_overhead_multiplier: 6.9
@@ -205,9 +205,9 @@ opening_books:
         - 3check
 online_moves:
   opening_explorer:
-    enabled: false
-    priority: 300
- #   player: Username
+    enabled: true
+    priority: 500
+    player: kingznight
     only_without_book: false
     use_for_variants: true
     allow_repetitions: false              # Whether the cloud can create repetitions on the board. Can lead to unintentional draws.     
