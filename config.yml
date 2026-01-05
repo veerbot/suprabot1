@@ -112,7 +112,7 @@ gaviota:
   max_pieces: 5
 
 opening_books:
-  enabled: true
+  enabled: false
   priority: 400
   books:
     standard_white:
@@ -248,7 +248,7 @@ online_moves:
     timeout: 3
 
 offer_draw:
-  enabled: true
+  enabled: false
   score: 10
   consecutive_moves: 4
   min_game_length: 30
@@ -256,7 +256,7 @@ offer_draw:
  # min_rating: 3000
 
 resign:
-  enabled: true
+  enabled: false
   score: -1200
   consecutive_moves: 6
   against_humans: false
@@ -265,7 +265,7 @@ resign:
 challenge:
   concurrency: 1
   bullet_with_increment_only: false
-  max_takebacks: 2
+  max_takebacks: 1
   min_initial: 120
  # max_initial: 1200
   variants:
