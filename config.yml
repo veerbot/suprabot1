@@ -330,10 +330,10 @@ matchmaking:
       variant: antichess
 
 messages:
-  greeting: "Konnichiwa guzaimase! ❤️‍🔥Using help of {engine} Type !help to glimpse my arsenal. Best of luck"
-  goodbye: "GGs, ezz. May we meet again, may I win again 💶 {me} signing off!"
-  greeting_spectators: "ITZ {engine} in {me} competing for more depth with @{opponent} Type !help for a list of commands."
-  goodbye_spectators: "SIMULATION TERMINATED@{opponent}.May our paths cross again!?Thanks For watching, {me} signing off!"
+  greeting: "For it is foretold by many before, we will grind to an ending, unhalting, forever…and ever…and…ever… hehehe,"
+  goodbye: "I am a tiger and you are in the jungle I call eternity."
+  greeting_spectators: "You played well. Not well enough. Type !help for a list of commands."
+  goodbye_spectators: "ominously All chess players eventually crumble under my mighty paws.I mean,meow! Hehehe."
 
 whitelist:
   - Supratsa
