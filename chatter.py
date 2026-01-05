@@ -104,9 +104,9 @@ class Chatter:
             case "eval":
                 await self._send_last_message(chat_message.room)
             case "motor":
-                await self.api.send_chat_message(self.game_info.id_, chat_message.room, self.lichess_game.engine.name)
+                await self.api.send_chat_message(self.game_info.id_, chat_message.room, "meow")
             case "name":
-                await self.api.send_chat_message(self.game_info.id_, chat_message.room, self.name_message)
+                await self.api.send_chat_message(self.game_info.id_, chat_message.room, "meow")
             case "ping":
                 if not self.game_info.increment_ms and self.lichess_game.own_time < 10.0:
                     return
