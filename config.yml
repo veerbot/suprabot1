@@ -213,10 +213,10 @@ online_moves:
     allow_repetitions: false              # Whether the cloud can create repetitions on the board. Can lead to unintentional draws.     
     min_time: 20
     timeout: 5
-    min_games: 10
+    min_games: 1
     only_with_wins: true
     selection: "performance"
-    anti: true
+    anti: false
     # max_depth: 20
 
   lichess_cloud:
