@@ -271,14 +271,14 @@ challenge:
   variants:
     - standard
     - chess960
-    - antichess
-    - atomic
-    - kingOfTheHill
-    - racingKings
-    - threeCheck
+ #   - antichess
+#    - atomic
+  #  - kingOfTheHill
+#    - racingKings
+#    - threeCheck
     - fromPosition
-    - crazyhouse
-    - horde
+#    - crazyhouse
+   # - horde
   bot_time_controls:
     - bullet
     - blitz
@@ -286,6 +286,9 @@ challenge:
   #  - classical
   human_time_controls:
     - rapid
+    - blitz
+    - bullet
+    - classical
   bot_modes:
     - casual
     - rated
