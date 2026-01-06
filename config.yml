@@ -82,6 +82,7 @@ engines:
        Threads: 4
        Hash: 4096
        Move Overhead: 169
+       contempt: 45
     limits: 
 
 
@@ -213,8 +214,8 @@ online_moves:
     allow_repetitions: false              # Whether the cloud can create repetitions on the board. Can lead to unintentional draws.     
     min_time: 20
     timeout: 5
-    min_games: 1
-    only_with_wins: true
+    min_games: 5
+    only_with_wins: false
     selection: "performance"
     anti: false
     # max_depth: 20
@@ -230,7 +231,7 @@ online_moves:
     allow_repetitions: true              # Whether the cloud can create repetitions on the board. Can lead to unintentional draws.
     trust_eval: true
     # max_depth: 30
-    min_depth: 35
+    min_depth: 13
 
   chessdb:
     enabled: true
